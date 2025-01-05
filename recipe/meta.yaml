@@ -7,11 +7,11 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/Pyment-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/Pyment-{{ version }}.tar.gz
   sha256: 951a4c52d6791ccec55bc739811169eed69917d3874f5fe722866623a697f39d
 
 build:
-  number: 0
+  number: 1
   noarch: python
   entry_points:
     - pyment = pyment.pymentapp:main
@@ -20,9 +20,9 @@ build:
 requirements:
   host:
     - pip
-    - python >=3.6
+    - python {{ python_min }}
   run:
-    - python >=3.6
+    - python >={{ python_min }}
 
 test:
   imports:
@@ -32,6 +32,7 @@ test:
     - pyment --help
   requires:
     - pip
+    - python {{ python_min }}
 
 about:
   home: https://github.com/dadadel/pyment
